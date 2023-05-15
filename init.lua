@@ -1,2 +1,1 @@
 require("esarver")
-print("hello")
