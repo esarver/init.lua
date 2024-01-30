@@ -1,33 +1,20 @@
 return {
     {
         "nvim-lua/plenary.nvim",
-	name = "plenary",
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        dependencies = {
-            "plenary",
-	},
+        name = "plenary",
     },
     {
         "folke/trouble.nvim",
     },
     {
-        "nvim-treesitter/nvim-treesitter",
-	build = ":TSUpdate",
-    },
-    {
          "ellisonleao/gruvbox.nvim",
-	 name = "gruvbox",
+        name = "gruvbox",
     },
     {
         "LazyVim/LazyVim",
-	opts = {
+        opts = {
             colorscheme = "gruvbox",
         },
     },
-    { 'theprimeagen/harpoon' },
-    { 'mbbill/undotree' },
-    { 'tpope/vim-fugitive' },
 
 }
