@@ -1,12 +1,47 @@
 return {
     {
         "williamboman/mason.nvim",
-        opts = {
-            'tsserver',
-            'eslint',
-            'lua_ls',
-            'rust_analyzer',
+        cmd = "Mason",
+        keys = {
+            { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason: Open Dialog" },
         },
+        build = ":MasonUpdate",
+        opts = {
+            ensure_installed = {
+                'typescript-language-server',
+                'eslint-lsp',
+                'lua-language-server',
+                'rust-analyzer',
+                'rustfmt'
+            },
+        },
+        ---@param opts MasonSettings | {ensure_installed: string[]}
+        config = function(_, opts)
+            require("mason").setup(opts)
+            local mr = require("mason-registry")
+            mr:on("package:install:success", function()
+                vim.defer_fn(function()
+                    -- trigger FileType event to possibly load this newly installed LSP server
+                    require("lazy.core.handler.event").trigger({
+                        event = "FileType",
+                        buf = vim.api.nvim_get_current_buf(),
+                    })
+                end, 100)
+            end)
+            local function ensure_installed()
+                for _, tool in ipairs(opts.ensure_installed) do
+                    local p = mr.get_package(tool)
+                    if not p:is_installed() then
+                        p:install()
+                    end
+                end
+            end
+            if mr.refresh then
+                mr.refresh(ensure_installed)
+            else
+                ensure_installed()
+            end
+        end,
     },
     {
         "hrsh7th/nvim-cmp",
@@ -22,50 +57,50 @@ return {
             local cmp = require("cmp")
             local defaults = require("cmp.config.default")()
             return {
-            completion = {
-                completeopt = "menu,menuone,noinsert",
-            },
-            mapping = cmp.mapping.preset.insert({
-                ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ["<C-e>"] = cmp.mapping.abort(),
-                ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                ["<S-CR>"] = cmp.mapping.confirm({
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                ["<C-CR>"] = function(fallback)
-                    cmp.abort()
-                    fallback()
-                end,
-            }),
-            sources = cmp.config.sources(
-                {
-                    { name = "nvim_lsp" },
-                    { name = "path" },
+                completion = {
+                    completeopt = "menu,menuone,noinsert",
                 },
-                {
-                    { name = "buffer" },
-                }
-            ),
-            formatting = {
-                format = function(_, item)
-                    local icons = require("lazyvim.config").icons.kinds
-                    if icons[item.kind] then
-                        item.kind = icons[item.kind] .. item.kind
-                    end
-                    return item
-                end,
-            },
-            experimental = {
-                ghost_text = {
-                hl_group = "CmpGhostText",
+                mapping = cmp.mapping.preset.insert({
+                    ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-e>"] = cmp.mapping.abort(),
+                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<S-CR>"] = cmp.mapping.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true,
+                    }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                    ["<C-CR>"] = function(fallback)
+                        cmp.abort()
+                        fallback()
+                    end,
+                }),
+                sources = cmp.config.sources(
+                    {
+                        { name = "nvim_lsp" },
+                        { name = "path" },
+                    },
+                    {
+                        { name = "buffer" },
+                    }
+                ),
+                formatting = {
+                    format = function(_, item)
+                        local icons = require("lazyvim.config").icons.kinds
+                        if icons[item.kind] then
+                            item.kind = icons[item.kind] .. item.kind
+                        end
+                        return item
+                    end,
                 },
-            },
-            sorting = defaults.sorting,
+                experimental = {
+                    ghost_text = {
+                        hl_group = "CmpGhostText",
+                    },
+                },
+                sorting = defaults.sorting,
             }
         end,
         config = function(_, opts)

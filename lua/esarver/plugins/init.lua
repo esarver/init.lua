@@ -7,7 +7,7 @@ return {
         "folke/trouble.nvim",
     },
     {
-         "ellisonleao/gruvbox.nvim",
+        "ellisonleao/gruvbox.nvim",
         name = "gruvbox",
     },
     {
