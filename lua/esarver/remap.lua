@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- Allow moving of highlighted text
@@ -31,7 +32,7 @@ vim.keymap.set("v", "<leader>d", "\"_d")
 -- "Q" is a stupid command
 vim.keymap.set("n", "Q", "<nop>")
 -- Format the current buffer
-vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- Quick fixes
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
@@ -41,3 +42,4 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- start a replace with the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
