@@ -29,7 +29,7 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({ "BufWritePre" }, {
     group = EsarverGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
@@ -38,17 +38,23 @@ autocmd({"BufWritePre"}, {
 autocmd('LspAttach', {
     group = EsarverGroup,
     callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
+            { buffer = e.buf, desc = "LSP: Goto Definition" })
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
+            { buffer = e.buf, desc = "LSP: Show Hover Documentation" })
+        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, { buffer = e.buf, desc = "LSP:" })
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
+            { buffer = e.buf, desc = "LSP: Show Code Actions" })
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
+            { buffer = e.buf, desc = "LSP: Show References" })
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
+            { buffer = e.buf, desc = "LSP: Rename Symbol" })
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
+            { buffer = e.buf, desc = "LSP: Show Signature Help" })
+        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
+            { buffer = e.buf, desc = "LSP: Show Next Diagnostic" })
+        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
+            { buffer = e.buf, desc = "LSP: Show Previous Diagnostic" })
     end
 })
 

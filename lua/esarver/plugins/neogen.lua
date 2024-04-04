@@ -13,7 +13,7 @@ return {
 
         vim.keymap.set("n", "<leader>nf", function()
             neogen.generate({ type = "func" })
-        end)
+        end )
 
         vim.keymap.set("n", "<leader>nt", function()
             neogen.generate({ type = "type" })
