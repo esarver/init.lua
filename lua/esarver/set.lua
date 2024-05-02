@@ -1,4 +1,3 @@
-
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -28,3 +27,11 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
 
+vim.opt.listchars = {
+    space = '·',
+    tab = '<->',
+    eol = '↲',
+    leadmultispace = '    |',
+}
+
+vim.opt.list = true
