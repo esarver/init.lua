@@ -31,7 +31,10 @@ vim.opt.listchars = {
     space = '·',
     tab = '<->',
     eol = '↲',
-    leadmultispace = '    |',
+    leadmultispace = '   |',
 }
 
 vim.opt.list = true
+
+vim.g.netrw_liststyle = 3
+
