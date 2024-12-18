@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "nvim: Open Ex" })
+vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "nvim: Open File Explorer" })
 
 -- Allow moving of highlighted text
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "nvim: Move Highlighted Line Down" })
@@ -42,3 +42,5 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", {desc="nvim: Previous Quick
 
 -- start a replace with the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "nvim: Start a Replace with the Current Word"})
+
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", {desc="Terminal to normal mode more easily"})
