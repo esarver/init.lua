@@ -38,3 +38,8 @@ vim.opt.list = true
 
 vim.g.netrw_liststyle = 3
 
+vim.filetype.add({
+    extension = {
+        tsp = 'lua',
+    },
+})
