@@ -15,6 +15,9 @@ return {
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "Telescope: Find Files" })
+        vim.keymap.set('n', '<leader>ec', function()
+            builtin.find_files { cwd = vim.fn.stdpath("config") }
+        end, { desc = "Edit NeoVim config" })
         vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Telescope: Find Git Files" })
 
         vim.keymap.set('n', '<leader>pws', function()

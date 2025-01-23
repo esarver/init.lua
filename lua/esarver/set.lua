@@ -1,5 +1,5 @@
 vim.opt.nu = true
-vim.opt.relativenumber = true
+--vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -31,7 +31,7 @@ vim.opt.listchars = {
     space = '·',
     tab = '<->',
     eol = '↲',
-    leadmultispace = '   |',
+    leadmultispace = '···|',
 }
 
 vim.opt.list = true
@@ -43,3 +43,5 @@ vim.filetype.add({
         tsp = 'lua',
     },
 })
+
+vim.opt.cursorline = true
