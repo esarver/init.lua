@@ -1,6 +1,7 @@
 require("esarver.set")
 require("esarver.remap")
 require("esarver.lazy")
+require("esarver.floating-terminal")
 
 local augroup = vim.api.nvim_create_augroup
 local EsarverGroup = augroup('esarver', {})
