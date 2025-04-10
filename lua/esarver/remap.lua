@@ -32,13 +32,7 @@ vim.keymap.set("v", "<leader>d", "\"_d", { desc = "nvim: Delete to Void Register
 -- "Q" is a stupid command
 vim.keymap.set("n", "Q", "<nop>", { desc = "nvim: Don't Repeat Last Register (AVAILABLE FOR REMAP)" })
 -- Format the current buffer
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "nvim: Format Current Buffer" })
-
--- Quick fixes
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", {desc="nvim: Next Quick Fix"})
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", {desc="nvim: Previous Quick Fix"})
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", {desc="nvim: Next Quick Fix in Current File"})
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", {desc="nvim: Previous Quick Fix in Current File"})
+vim.keymap.set("n", "<leader>v", vim.lsp.buf.format, { desc = "nvim: Format Current Buffer" })
 
 -- start a replace with the current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "nvim: Start a Replace with the Current Word"})

@@ -9,16 +9,21 @@ return {
 
     config = function()
         local ts = require("telescope")
-        ts.setup({})
+        ts.setup({
+            defaults = {
+                border = false
+            }
+        })
 
         ts.load_extension("git_worktree")
 
         local builtin = require('telescope.builtin')
-        vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = "Telescope: Find Files" })
+        vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = "Telescope: Find Files" })
         vim.keymap.set('n', '<leader>ec', function()
             builtin.find_files { cwd = vim.fn.stdpath("config") }
         end, { desc = "Edit NeoVim config" })
-        vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = "Telescope: Find Git Files" })
+        vim.keymap.set('n', '<C-p>', function() builtin.git_files({ show_untracked = true }) end,
+            { desc = "Telescope: Find Git Files" })
 
         vim.keymap.set('n', '<leader>pws', function()
             local word = vim.fn.expand("<cword>")

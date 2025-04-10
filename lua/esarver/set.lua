@@ -25,7 +25,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "88"
 
 vim.opt.listchars = {
     space = '·',
@@ -45,3 +45,6 @@ vim.filetype.add({
 })
 
 vim.opt.cursorline = true
+
+vim.o.winborder ='rounded'
+vim.o.completeopt = "noinsert,menuone,fuzzy,preview"
