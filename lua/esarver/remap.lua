@@ -25,16 +25,7 @@ vim.keymap.set("n", "<leader>y", "\"+y", { desc = "nvim: Yank to System Clipboar
 vim.keymap.set("v", "<leader>y", "\"+y", { desc = "nvim: Yank to System Clipboard" })
 vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "nvim: Yank to System Clipboard" })
 
--- Delete to void register (so you don't lose the yanked stuff)
-vim.keymap.set("n", "<leader>d", "\"_d", { desc = "nvim: Delete to Void Register" })
-vim.keymap.set("v", "<leader>d", "\"_d", { desc = "nvim: Delete to Void Register" })
-
--- "Q" is a stupid command
-vim.keymap.set("n", "Q", "<nop>", { desc = "nvim: Don't Repeat Last Register (AVAILABLE FOR REMAP)" })
 -- Format the current buffer
 vim.keymap.set("n", "<leader>v", vim.lsp.buf.format, { desc = "nvim: Format Current Buffer" })
-
--- start a replace with the current word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "nvim: Start a Replace with the Current Word"})
 
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", {desc="Terminal to normal mode more easily"})

@@ -46,5 +46,12 @@ vim.filetype.add({
 
 vim.opt.cursorline = true
 
+-- Put rounded borders around all floats (including hover help floats)
 vim.o.winborder ='rounded'
+
+-- This sets the following:
+--  - Don't insert text from the first completion option
+--  - Automatically highlight the first option
+--  - use the fuzzy finder
+--  - show additional information
 vim.o.completeopt = "noinsert,menuone,fuzzy,preview"
