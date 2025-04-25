@@ -9,6 +9,15 @@ return {
                 "vimdoc", "javascript", "typescript", "c", "lua", "rust",
                 "jsdoc", "bash",
             },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<M-o>",
+                    scope_incremental = "<M-O>",
+                    node_incremental = "<M-o>",
+                    node_decremental = "<M-i>",
+                },
+            },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
             sync_install = false,
@@ -43,5 +52,6 @@ return {
         }
 
         vim.treesitter.language.register("templ", "templ")
+
     end
 }
