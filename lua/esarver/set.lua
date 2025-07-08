@@ -25,7 +25,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "88"
 
 vim.opt.listchars = {
     space = '·',
@@ -45,3 +45,13 @@ vim.filetype.add({
 })
 
 vim.opt.cursorline = true
+
+-- Put rounded borders around all floats (including hover help floats)
+vim.o.winborder ='rounded'
+
+-- This sets the following:
+--  - Don't insert text from the first completion option
+--  - Automatically highlight the first option
+--  - use the fuzzy finder
+--  - show additional information in a popup, not a new window
+vim.o.completeopt = "noinsert,menuone,fuzzy,popup"
