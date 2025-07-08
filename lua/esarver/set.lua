@@ -53,5 +53,5 @@ vim.o.winborder ='rounded'
 --  - Don't insert text from the first completion option
 --  - Automatically highlight the first option
 --  - use the fuzzy finder
---  - show additional information
-vim.o.completeopt = "noinsert,menuone,fuzzy,preview"
+--  - show additional information in a popup, not a new window
+vim.o.completeopt = "noinsert,menuone,fuzzy,popup"

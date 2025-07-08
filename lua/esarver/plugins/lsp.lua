@@ -11,8 +11,9 @@ return {
             callback = function(ev)
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
                 if client and client:supports_method('textDocument/completion') then
-                    vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true})
+                    vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
                 end
+                vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { desc = "LSP: Goto Definition" })
             end,
         })
 
@@ -55,8 +56,26 @@ return {
                 Lua = {}
             }
         }
-        lspconfig.rust_analyzer.setup{}
-        lspconfig.denols.setup{}
-        lspconfig.markdown_oxide.setup{}
+        vim.lsp.config("rust_analyzer", {
+            server = {
+                settings = {
+                    ['rust_analyzer'] = {
+                        diagnostics = {
+                            enable = true,
+
+                        },
+                        check = {
+                            enable = true,
+                            command = 'clippy',
+                            features = 'all',
+                        },
+                        checkOnSave = true,
+                    }
+                }
+            }
+        })
+        vim.lsp.enable('rust_analyzer', true)
+        lspconfig.denols.setup {}
+        lspconfig.markdown_oxide.setup {}
     end
 }
