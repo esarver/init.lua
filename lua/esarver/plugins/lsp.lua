@@ -21,9 +21,7 @@ return {
             "ts=typescript"
         }
 
-        local lspconfig = require("lspconfig")
-
-        lspconfig.lua_ls.setup {
+        vim.lsp.config("lua_ls", {
             on_init = function(client)
                 if client.workspace_folders then
                     local path = client.workspace_folders[1].name
@@ -55,7 +53,7 @@ return {
             settings = {
                 Lua = {}
             }
-        }
+        })
         vim.lsp.config("rust_analyzer", {
             server = {
                 settings = {
@@ -64,18 +62,24 @@ return {
                             enable = true,
 
                         },
-                        check = {
+                        cargo = {
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                        checkOnSave = {
                             enable = true,
                             command = 'clippy',
                             features = 'all',
                         },
-                        checkOnSave = true,
                     }
                 }
             }
         })
-        vim.lsp.enable('rust_analyzer', true)
-        lspconfig.denols.setup {}
-        lspconfig.markdown_oxide.setup {}
+        vim.lsp.enable("denols")
+        vim.lsp.enable("markdown_oxide")
     end
 }
