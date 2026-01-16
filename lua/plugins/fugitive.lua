@@ -1,0 +1,33 @@
+vim.pack.add({ { src = "https://github.com/tpope/vim-fugitive" } })
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
+local Fugitive = vim.api.nvim_create_augroup("Fugitive", {})
+
+local autocmd = vim.api.nvim_create_autocmd
+autocmd("BufWinEnter", {
+    group = Fugitive,
+    pattern = "*",
+    callback = function()
+        if vim.bo.ft ~= "fugitive" then
+            return
+        end
+
+        local bufnr = vim.api.nvim_get_current_buf()
+        vim.keymap.set("n", "<leader>p", function()
+            vim.cmd.Git('push')
+        end, { buffer = bufnr, remap = false, desc = "Fugitive: Push" })
+
+        vim.keymap.set("n", "<leader>P", function()
+            vim.cmd.Git({ 'pull' })
+        end, { buffer = bufnr, remap = false, desc = "Fugitive: Pull" })
+
+        -- NOTE: It allows me to easily set the branch i am pushing and any tracking
+        -- needed if i did not set the branch up correctly
+        vim.keymap.set("n", "<leader>t", ":Git push -u origin ",
+            { buffer = bufnr, remap = false, desc = "Fugitive: Publish Branch" });
+    end,
+})
+
+
+vim.keymap.set("n", "gu", "<cmd>diffget //2<CR>", { desc = "Fugitive: Keep Upstream" })
+vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>", { desc = "Fugitive: Keep HEAD" })

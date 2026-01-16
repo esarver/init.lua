@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>", { desc = "nvim: Open File Explorer" })
 
 -- Allow moving of highlighted text
@@ -23,7 +22,7 @@ vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "nvim: Paste Over Highlighted
 -- yank to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y", { desc = "nvim: Yank to System Clipboard" })
 vim.keymap.set("v", "<leader>y", "\"+y", { desc = "nvim: Yank to System Clipboard" })
-vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "nvim: Yank to System Clipboard" })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "nvim: Yank to end of current line to System Clipboard" })
 
 -- Format the current buffer
 vim.keymap.set("n", "<leader>v", vim.lsp.buf.format, { desc = "nvim: Format Current Buffer" })

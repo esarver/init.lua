@@ -17,6 +17,8 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+vim.opt.inccommand = 'split'
+
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
@@ -33,7 +35,6 @@ vim.opt.listchars = {
     eol = '↲',
     leadmultispace = '···|',
 }
-
 vim.opt.list = true
 
 vim.g.netrw_liststyle = 3
@@ -55,3 +56,6 @@ vim.o.winborder ='rounded'
 --  - use the fuzzy finder
 --  - show additional information in a popup, not a new window
 vim.o.completeopt = "noinsert,menuone,fuzzy,popup"
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true

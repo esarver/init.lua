@@ -1,17 +1,8 @@
-require("esarver.set")
-require("esarver.remap")
-require("esarver.lazy")
-require("esarver.floating-terminal")
-
 local augroup = vim.api.nvim_create_augroup
 local EsarverGroup = augroup('esarver', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
-
-function R(name)
-    require("plenary.reload").reload_module(name)
-end
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -29,13 +20,6 @@ autocmd({ "BufWritePre" }, {
     pattern = "*",
     command = [[%s/\s\+$//e]],
 })
-
-
-vim.g.netrw_browse_split = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-
-vim.diagnostic.config({virtual_lines = { current_line = true }})
 
 local is_git_dir = function()
     if jit.os:find("Windows") then
