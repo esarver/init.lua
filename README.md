@@ -21,7 +21,7 @@ recommended that you include them in your nix flake development tools for each p
 - `markdown_oxide` Markdown and PKMS
 - `nil_ls` Nix
 - `nixd` Nix
-- `pyright` --Python
+- `pyright` Python
 - `rust_analyzer` Rust
 - `taplo` TOML (rust)
 - `tinymist` Typst

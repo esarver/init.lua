@@ -23,7 +23,7 @@ vim.lsp.enable({
     "lua_ls",         -- Lua
     "markdown_oxide", -- Markdown and PKMS
     "nixd",           -- Nix
-    "pyright",        --Python
+    "pyright",        -- Python
     "rust_analyzer",  -- Rust
     "taplo",          -- TOML (rust)
     "tinymist",       -- Typst
